@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planta Slab Cooler</title>
+    <style>body {
+  font-family: arial;
+  border: 5px solid black;
+  padding: 5px;
+}
+/* ---------------- TOPO ---------------- */
+
+
+body {
+  max-widht:1100px;
+}
+
+header {
+  display: flex;
+  width: 1100px;
+  height: 100px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 1;
+}
+
+header select {
+  cursor:pointer;
+  font-weight: bold;
+}
+
+#data {
+  font-size: large;
+  font-weight: bold;
+}
+
+header p {
+  font-size: large;
+  font-weight: bold;
+}
+
+header select:hover {
+    background-color: #efefef;
+}
+
+header h1 {
+  width: 
+  200px;
+}
+
+header label {
+  font-weight: bold
+}
+
+
+/* ----------------------- LISTA ------------------ */
+
+.fichas {
+  display: grid;
+  grid-template-columns: 240px 240px 240px 240px;
+  grid-template-rows: 60px 60px 60px;
+  justify-content: center;
+  text-align: center;
+}
+
+.lista input {
+  width: 90px;
+  justify-content: center;
+  align-items: center;
+  padding: 7px;
+  margin: 6px;
+  font-weight: bold;
+  font-size: large;
+}
+
+.item-lista {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.item-sequencia {
+  background-color: #d4d4d4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 3px solid black;
+  font-weight: bold;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.item-listas {
+  border: 1px solid black;
+}
+
+.item-listas input {
+  font-size: large;
+  padding: 7px;
+  align-items: center;
+  width: 90px;
+  justify-content: center;
+}
+
+.lista input:hover {
+  background-color: #efefef;
+  opacity: 0.8;
+  transition-delay: 0.5s;
+  transition: background-color 0.5s ease-in-out;
+}
+
+
+/* -------- OBS ----------- */
+
+.obs {
+  height: 130px;
+  text-align: center;
+}
+
+.obs input {
+  width: 500px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.inf {
+  justify-content: center;
+  text-align: center;
+  height: 40px;
+  display: flex;
+  gap: 5px;
+}
+
+.inf input {
+  width: 150px;
+}
+
+.obs input:hover{
+    background-color: #efefef;
+  opacity: 0.8;
+  transition-delay: 0.5s;
+  transition: background-color 0.5s ease-in-out;
+}
+
+/* -------------- IMPRESSÃO ---------------- */
+
+
+@media print {
+  #btnImprimir {
+    display: none !important;
+  }
+}
+
+
+@media print {
+  body {
+    font-size: 13pt;
+  }
+}
+
+#btnImprimir {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.limpar {
+  text-align: center;
+}
+
+@media print {
+  input[type="reset"] {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+<!-- CABEÇALHO -->
+    <header>
+
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAMAAAAOusbgAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAABFUExURf///3a4KvT67ofARKLOb5/Nanq7MYC9OpHGU3q5MJbIXIrDS7nbkY7ET4bAQqzTffv9+X68NvD46Orz3tfrwpzMZYC/OEtL5iMAAAABYktHRACIBR1IAAAAB3RJTUUH6QoGBCA5X8yj4QAAAAFvck5UAc+id5oAAAFGSURBVGje7drdboJAEIbhHbEKoq1U5f4vtWh6oGFY5mdh2vi9xzvzACaaqCkhhBBCCKF7RBvnhorIMLWloQ/XhZMdNk0+2pnHf2Ha22/XB1uGN47ZJ1g9XdtHX2HleGOeHMGq+YN1kIM1C6xzPFzZXD8s3kClYemKKJjKw00ULNrRRsG0BNxGwZIlbwcfo+ATYMCAAQMGDBgwYMCAAQP+u/BnFEz/Gh5vqaPg+S1R8H4peKuekH/pm10zc/0n7cBEzXjPruyVKhZ96Y6Xg+mgOm16iflVk0+bPWxzJ5axX6byJwvDQ+eXYy0VdjPyUNPdy51YCJ7P7vpk2Y8YE30H3XBKXZBrf9he1yr7XfZTdhU3pUuQq37cx2Kuji7JJu6XnVVY4V3b/jMi6JpTXW+Rgm4c2i2MPtX3D7E/r0cihBBCCCGU7Qd19A88iNVt9gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNS0xMC0wNlQwNDozMjo1MCswMDowMGStEV4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjUtMTAtMDZUMDQ6MzI6NTArMDA6MDAV8KniAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI1LTEwLTA2VDA0OjMyOjU3KzAwOjAwh0K2swAAAABJRU5ErkJggg==" alt="logo da usina" width="60px">
+      <h1>Planta do Slab Cooler</h1>
+      <p>Data: <span id="data"></span></p>
+    <label id="planta">Planta:</label>
+    <select id="planta">
+      <option>Selecione</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+      <option>11</option>
+      <option>12</option>
+      <option>13</option>
+      <option>14</option>
+      <option>15</option>
+      <option>16</option>
+    </select>
+
+<label id="turnos">Turno:</label>
+
+    <select id="turno">
+      <option>Selecione</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+      <option>D</option>
+    </select>
+
+    <label id="Letras">Letra:</label>
+    <select id="Letra">
+      <option>Selecione</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+      <option>D</option>
+    </select>
+    </header>
+<!--LISTA-->
+<form>
+
+<div class="lista">
+  <div class="fichas">
+  <div class="item-sequencia">SEQUÊNCIA 1</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-sequencia">SEQUÊNCIA 9</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+    <div class="item-sequencia">SEQUÊNCIA 2</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-sequencia">SEQUÊNCIA 10</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+    <div class="item-sequencia">SEQUÊNCIA 3</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-sequencia">SEQUÊNCIA 11</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+    <div class="item-sequencia">SEQUÊNCIA 4</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-sequencia">SEQUÊNCIA 12</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+    <div class="item-sequencia">SEQUÊNCIA 5</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-sequencia">SEQUÊNCIA 13</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+    <div class="item-sequencia">SEQUÊNCIA 6</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-sequencia">SEQUÊNCIA 14</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+    <div class="item-sequencia">SEQUÊNCIA 7</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-sequencia">SEQUÊNCIA 15</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+    <div class="item-sequencia">SEQUÊNCIA 8</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-sequencia">SEQUÊNCIA 16</div>
+  <div class="item-lista">VEIO: <input text maxlength="1"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-lista">PEDIDO: <input text placeholder="VAGO" maxlength="6"></div>
+  <div class="item-lista">PLACA: <input text maxlength="3"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+  <div class="item-listas">INF: <input text></div>
+  <div class="item-listas">LARG: <input text maxlength="4"></div>
+   <input class="limpar" type="reset" value="Limpar">
+  </div>
+  </div>
+</form>
+<div class="obs">
+  <p>OBS: <input text></p>
+<div class="inf">
+  <p>Resp.Pelo Mapa: <input text></p>
+  <p>Resp.Pela Marcação: <input text></p>
+  <p>Resp.Pela Conferencia: <input text></p>
+  <p>Lider: <input text></p>
+</div>
+</div>
+</div>
+</div>
+  <button id="btnImprimir">Imprimir Página</button>
+<script>
+  // script.js
+function atualizarData() {
+   const dataSpan =
+document.getElementById("data");
+   const agora = new Date();
+  const data =
+agora.toLocaleDateString();
+  const hora=
+agora.toLocaleTimeString();
+   dataSpan.innerHTML = data + "<br>Horário da impressão: " + hora;
+}
+atualizarData();
+setInterval(atualizarData, 1000);
+
+    document.getElementById("btnImprimir").onclick = function() {
+        window.print();
+    };
+  </script>  
+</body>
+</html>
+
+<!-- CRIADOR DA LISTA CARLOS HENRIQUE ALVES DE SOUSA CHAPA:060012847 -->

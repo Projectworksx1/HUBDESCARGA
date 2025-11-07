@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: #111;
+  margin: 40px;
+  padding: 40px;
+}
+label{
+  display: block;
+  margin-bottom: 5px;
+}
+input {
+  padding: 5px;
+  width: 100px;
+}
+@media print {
+  button {
+    display: none;
+  }
+}
+@media print {
+  input {
+    border: 1px solid #0000 !important;
+  }
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px;
+}
+input[type="text"] {
+  width: 40% !important;
+  padding: 10px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 6px !important;
+  font-size: 16px !important;
+  margin-bottom: 10px !important;
+  }
+input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px;
+  r g ba(0,123,255,0,3);
+}
+button {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+button:hover {
+  background-color: #0056b3;
+}
+@media print {
+  body {
+    background: white;
+  }
+  .container {
+    box-shadow: none;
+    border: none;
+  }
+  button {
+    display: none;
+  }
+}
+</style>
+<title>Projeto peso placa padrão</title>
+</head>
+<body>
+<div class="container">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAMAAAAOusbgAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAABFUExURf///3a4KvT67ofARKLOb5/Nanq7MYC9OpHGU3q5MJbIXIrDS7nbkY7ET4bAQqzTffv9+X68NvD46Orz3tfrwpzMZYC/OEtL5iMAAAABYktHRACIBR1IAAAAB3RJTUUH6QoGBCA5X8yj4QAAAAFvck5UAc+id5oAAAFGSURBVGje7drdboJAEIbhHbEKoq1U5f4vtWh6oGFY5mdh2vi9xzvzACaaqCkhhBBCCKF7RBvnhorIMLWloQ/XhZMdNk0+2pnHf2Ha22/XB1uGN47ZJ1g9XdtHX2HleGOeHMGq+YN1kIM1C6xzPFzZXD8s3kClYemKKJjKw00ULNrRRsG0BNxGwZIlbwcfo+ATYMCAAQMGDBgwYMCAAQP+u/BnFEz/Gh5vqaPg+S1R8H4peKuekH/pm10zc/0n7cBEzXjPruyVKhZ96Y6Xg+mgOm16iflVk0+bPWxzJ5axX6byJwvDQ+eXYy0VdjPyUNPdy51YCJ7P7vpk2Y8YE30H3XBKXZBrf9he1yr7XfZTdhU3pUuQq37cx2Kuji7JJu6XnVVY4V3b/jMi6JpTXW+Rgm4c2i2MPtX3D7E/r0cihBBCCCGU7Qd19A88iNVt9gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNS0xMC0wNlQwNDozMjo1MCswMDowMGStEV4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjUtMTAtMDZUMDQ6MzI6NTArMDA6MDAV8KniAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI1LTEwLTA2VDA0OjMyOjU3KzAwOjAwh0K2swAAAABJRU5ErkJggg==" alt="logo da usina" width="60px">
+<p>
+  Data: <span id="data">
+</span></p>
+<div class="bloco">
+  <p>
+    <strong>PESO PADRÃO</strong></p>
+  <p>
+    <strong>5600</strong>
+  </p>
+<div class="plaquinha">
+<label>1- <input type="text"></label>
+<label>2- <input type="text"></label>
+<label>3- <input type="text"></label>
+</div>
+</div>
+<p>
+    <strong>25380</strong>
+  </p>
+<div class="placa">
+<label>1- <input type="text"></label>
+<label>2- <input type="text"></label>
+<label>3- <input type="text"></label>
+</div>
+<p>
+    <strong>LARGURA</strong>
+  </p>
+<div class="largura">
+<label>1- <input type="text"></label>
+<label>2- <input type="text"></label>
+<label>3- <input type="text"></label>
+   </div>
+<script>
+  // script.js
+function atualizarData() {
+   const dataSpan =
+document.getElementById("data");
+   const agora = new Date();
+  const data =
+agora.toLocaleDateString();
+  const hora=
+agora.toLocaleTimeString();
+   dataSpan.innerHTML = data + "<br>Horário da impressão: " + hora;
+}
+atualizarData();
+setInterval(atualizarData, 1000);
+</script>
+<button
+onclick="window.print()">Imprimir</button>
+<footer class="credito">
+</footer>
+</div>
+</body>
+<!--criador por Carlos Henrique chapa:060012847-->
